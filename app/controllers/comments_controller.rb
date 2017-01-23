@@ -15,7 +15,6 @@ class CommentsController < ApplicationController
       if @comment.save
 
         format.html { redirect_to @event, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
       else
         format.html { redirect_to @event, alert: 'Comment cant be blank.'}
       end
@@ -25,7 +24,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to @event, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
