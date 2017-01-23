@@ -1,0 +1,59 @@
+<%= link_to 'Create new event', new_event_path, class: "new" %>
+<p id="notice"><%= notice %></p>
+
+<h1>Your Events</h1>
+
+<table id="attributes">
+  <thead>
+  <tr class="warning">
+      <th><h4>Info</h4></th>
+      <th><h4>Place</h4></th>
+      <th><h4>Time</h4></th>
+      <th><h4>Description</h4></th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr class="active">
+        <td><%= link_to 'More Info', event,class: "new" %></td>
+        <td><h4><%= event.place %></h4></td>
+        <td><h4><%= event.time.localtime.strftime("%d %b. %Y %H:%M") %></h4></td>
+        <td><h4><%= event.description %></h4></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+<h1>Event in which you are a member</h1>
+<table id="attributes">
+  <thead>
+  <tr class="warning">
+    <th><h4>Info</h4></th>
+    <th><h4>Place</h4></th>
+    <th><h4>Time</h4></th>
+    <th><h4>Description</h4></th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @attached.each do |event| %>
+      <tr class="active">
+        <td><%= link_to 'More Info', event,class: "new"%></td>
+        <td><h4><%= event.place %></h4></td>
+        <td><h4><%= event.time.localtime.strftime("%d %b. %Y %H:%M") %></h4></td>
+        <td><h4><%= event.description %></h4></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

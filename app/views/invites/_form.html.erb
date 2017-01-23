@@ -1,0 +1,6 @@
+<%= simple_form_for([event, event.invites.build]) do |f| %>
+    <%= f.label :email %>
+
+    <%= f.email_field :email %>
+    <%= f.button :submit, "Send", class: "btn btn-primary btn-sm" %>
+<% end %>

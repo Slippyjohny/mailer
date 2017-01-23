@@ -1,0 +1,3 @@
+<% if @notifications.present? %>
+    <%= link_to "You have #{@notifications.count} notifications", notifications_path %>
+<% end %>
