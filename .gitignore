@@ -17,6 +17,7 @@
 !/log/.keep
 !/tmp/.keep
 /uploads/*
+.idea
 
 # Ignore Byebug command history file.
 .byebug_history
