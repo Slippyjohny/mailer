@@ -29,7 +29,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem "simple_form"
 gem "carrierwave"
-gem 'apipie-rails'
 ruby "2.3.1"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
