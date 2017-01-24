@@ -8,7 +8,6 @@ Bundler.require(*Rails.groups)
 
 module Systems
   class Application < Rails::Application
-    config.action_mailer.delivery_method   = :postmark
-    config.action_mailer.postmark_settings = { :api_token => ENV['POSTMARK_API_TOKEN'] }
+
   end
 end
