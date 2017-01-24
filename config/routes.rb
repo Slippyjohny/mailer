@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations"}
 
   resources :events do
-    resources :comments, only: [:new, :create,:destroy]
+    resources :comments, only: [:new, :create, :destroy]
     resources :documents, only: [:show, :create, :new, :destroy]
     resources :invites, only: [:new, :create]
   end

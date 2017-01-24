@@ -24,7 +24,6 @@ class DocumentsController < ApplicationController
     end
   end
   def destroy
-
     @document.destroy
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Event was successfully destroyed.' }

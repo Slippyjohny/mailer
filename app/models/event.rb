@@ -1,6 +1,5 @@
 class Event < ApplicationRecord
   include PgSearch
-
   belongs_to :user
   has_many :attached_events_users
   has_many :attached_users, through: :attached_events_users, source: :user
