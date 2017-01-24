@@ -5,7 +5,7 @@ require_relative 'application'
 Rails.application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-    :address => 'mailersystem.herokuapp.com',
+    :address => '0.0.0.0',
     :port => 587,
     :user_name => "shpak.d.o@gmail.com",
     :password => "dmitro24",
