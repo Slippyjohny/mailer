@@ -4,10 +4,12 @@ default: &default
   host: localhost
   username: postgres
   password: dmitro24
+  pool: 25
 
 development:
   <<: *default
   database: work
+  pool: 25
 
 test:
   <<: *default
@@ -17,4 +19,5 @@ production:
   <<: *default
   database: work_production
   username: postgres
+  pool: 25
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>

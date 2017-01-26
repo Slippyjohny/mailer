@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  load_and_authorize_resource
   before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,15 +13,31 @@ class EventsController < ApplicationController
       @events = current_user.events.where(created_at: (Time.now- interval.day)..Time.now)
       @attached = current_user.attached_events.where(created_at: (Time.now - interval.day)..Time.now)
     else
-      @events = current_user.events
-      @attached = current_user.attached_events
+      events=$redis.get("events")
+      if events.nil?
+        events=current_user.events.to_json
+        @events =JSON.load($redis.get("events"))
+        $redis.set("events", events)
+      else
+        @events =JSON.load($redis.get("events"))
+      end
+      attached=$redis.get("attached")
+      if attached.nil?
+        attached=current_user.attached_events.to_json
+        $redis.set("attached", attached)
+        @attached=JSON.load($redis.get("attached"))
+      else
+        @attached=JSON.load($redis.get("attached"))
+      end
     end
   end
+
 
   def show
   end
 
   def new
+
     @event = Event.new
   end
 
@@ -64,7 +80,9 @@ class EventsController < ApplicationController
 
   private
   def set_event
+
     @event = Event.find(params[:id])
+
   end
 
   def event_params

@@ -1,7 +1,6 @@
 class InviteMailer < ApplicationMailer
   default from: "info@localhost"
 
-
   def existing_user_invite(invite,path)
     @invite=invite
     @link=path

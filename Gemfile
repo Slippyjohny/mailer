@@ -31,6 +31,13 @@ gem "simple_form"
 gem "carrierwave"
 ruby "2.3.1"
 gem 'postmark-rails'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

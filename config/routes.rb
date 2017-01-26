@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   resources :notifications
   devise_for :users, controllers: {registrations: "registrations"}
@@ -9,4 +11,5 @@ Rails.application.routes.draw do
   end
   resources :notifications, only: %i{index show}
   root 'events#index'
+  mount Sidekiq::Web, at: '/sidekiq'
 end

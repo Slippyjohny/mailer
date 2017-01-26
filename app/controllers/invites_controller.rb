@@ -14,10 +14,9 @@ class InvitesController < ApplicationController
     respond_to do |format|
       if @invite.save
         if @invite.recipient_id != nil
-
-          InviteMailer.existing_user_invite(@invite, event_url(@event,invite_token: @invite.token )).deliver
+          EmailWorker.perform_in(5.minutes, @invite.id, event_url(@event,invite_token: @invite.token ))
         else
-          InviteMailer.new_user_invite(@invite, new_user_registration_url(invite_token: @invite.token)).deliver
+          EmailWorker.perform_in(5.minutes, @invite.id,  new_user_registration_url(invite_token: @invite.token))
         end
         format.html { redirect_to :back, notice: 'Invite was successfully sent.' }
         format.json { render :show, status: :created, location: @event }
