@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head>
   <title>
     <% if content_for?(:title) %>
@@ -54,7 +54,7 @@
                                 method: :delete %>
                 </li>
                 <li>
-                  <%= render partial: 'notifications/notifications_nav'%>
+                  <%= render partial: 'notifications/notifications_nav' %>
                 </li>
               </ul>
             </div>
@@ -70,6 +70,7 @@
         <%= message %>
       </div>
   <% end %>
+
   <%= yield %>
 </div>
 </body>

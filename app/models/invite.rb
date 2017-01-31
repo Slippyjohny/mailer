@@ -1,4 +1,5 @@
 class Invite < ApplicationRecord
+
   belongs_to :event
   belongs_to :sender, class_name: 'User'
   has_many :notifications

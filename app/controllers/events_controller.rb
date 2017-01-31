@@ -13,22 +13,12 @@ class EventsController < ApplicationController
       @events = current_user.events.where(created_at: (Time.now- interval.day)..Time.now)
       @attached = current_user.attached_events.where(created_at: (Time.now - interval.day)..Time.now)
     else
-      events=$redis.get("events")
-      if events.nil?
-        events=current_user.events.to_json
-        @events =JSON.load($redis.get("events"))
-        $redis.set("events", events)
-      else
-        @events =JSON.load($redis.get("events"))
-      end
-      attached=$redis.get("attached")
-      if attached.nil?
-        attached=current_user.attached_events.to_json
-        $redis.set("attached", attached)
-        @attached=JSON.load($redis.get("attached"))
-      else
-        @attached=JSON.load($redis.get("attached"))
-      end
+      events = current_user.events.to_json
+      attached = current_user.attached_events.to_json
+      $redis.set("events", events)
+      $redis.set("attached",  attached)
+      @events =JSON.load($redis.get("events"))
+      @attached=JSON.load($redis.get("attached"))
     end
   end
 

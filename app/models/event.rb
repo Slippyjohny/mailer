@@ -17,6 +17,14 @@ class Event < ApplicationRecord
   validates :end_time,
             date: {after: :time}
 
+
+  after_create :telegram_bot
+
+
+  def telegram_bot
+    TelegramWorker.perform_async(self.id)
+  end
+
 end
 
 

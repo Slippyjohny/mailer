@@ -1,5 +1,6 @@
 class InvitesController < ApplicationController
   load_and_authorize_resource
+
   def new
     @event=Event.find(params[:event_id])
     @invite = @event.invites.build
@@ -14,18 +15,17 @@ class InvitesController < ApplicationController
     respond_to do |format|
       if @invite.save
         if @invite.recipient_id != nil
-          EmailWorker.perform_in(5.minutes, @invite.id, event_url(@event,invite_token: @invite.token ))
+          EmailWorker.perform_async(@invite.id, event_url(@event, invite_token: @invite.token))
         else
-          EmailWorker.perform_in(5.minutes, @invite.id,  new_user_registration_url(invite_token: @invite.token))
+          EmailWorker.perform_async(@invite.id, new_user_registration_url(invite_token: @invite.token))
         end
         format.html { redirect_to :back, notice: 'Invite was successfully sent.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { redirect_to @event, alert: 'Invalid email'}
+        format.html { redirect_to @event, alert: 'Invalid email' }
       end
     end
   end
-
 
 
   private
