@@ -1,9 +1,8 @@
 set :application, 'EventsSystem'   # application name
-set :deploy_user, 'clouduser'   # name of user who is set on server
 set :repo_url, 'https://github.com/Slippyjohny/mailer.git'   # your repository url from github
 
 server '31.131.25.139', port: 22, roles: [:web, :app, :db], primary: true
-
+set :user,            'clouduser'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
