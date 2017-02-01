@@ -1,0 +1,64 @@
+<div id="event">
+  <div id="invite">
+    <p>
+    <h3>Send Invite to event:</h3>
+    <%= render partial: "invites/form", locals: {event: @event} %>
+    <p>
+  </div>
+  <header>
+    <table id="attributes">
+      <tr>
+        <th>Author:</th>
+        <td><%= @event.user.email %></td>
+      </tr>
+      <tr>
+        <th>Created:</th>
+        <td><%= time_ago_in_words(@event.created_at) %> ago</td>
+      </tr>
+    </table>
+
+    <h3>Description: <%= @event.description %>
+      <h3>Place: <%= @event.place %></h3>
+      <h4>Start Time: <%= @event.time.localtime.strftime("%d %b. %Y %H:%M") %> </h4>
+      <h4>End Time: <%= @event.end_time.localtime.strftime("%d %b. %Y %H:%M") %> </h4>
+      <ul class="actions">
+        <li><%= link_to "Edit Event", edit_event_path(@event),
+                        class: "edit" %></li>
+        <li><%= link_to "Delete Event", @event, method: :delete,
+                        data: {confirm: "Are you sure you want to delete this ticket?"},
+                        class: "delete" %></li>
+      </ul>
+  </header>
+  <% if @event.documents.any? %>
+      <h4>Attachments</h4>
+      <div class="attachments">
+        <% @event.documents.latest(3).each do |document| %>
+            <p><%= link_to "Delete Document", event_document_url(document),
+                           method: :delete,
+                           data: {confirm: "Are you sure you want to delete this ticket?"},
+                           class: "btn btn-warning btn-xs" %></p>
+            <%="#{document.name}:"%> <%= link_to File.basename(document.attachment.url),
+                        event_document_path(document.id) %>
+            (<%= number_to_human_size(document.attachment.size) %>)
+
+            </p>
+        <% end %>
+      </div>
+  <% end %>
+  <p>
+    <%= render partial: "documents/form", locals: {event: @event} %>
+  </p>
+</div>
+<header>
+</header>
+
+
+<div id="message">
+  <h3> <%= render partial: "comments/form", locals: {event: @event} %></h3>
+</div>
+
+
+<div id="messages" data-event-id="<%= @event.id %>">
+  <h3> <%= render partial: "comments/comments", locals: {event: @event} %></h3>
+</div>
+

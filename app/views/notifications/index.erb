@@ -1,0 +1,11 @@
+<h2>Invites</h2>
+<div class="attachments">
+  <% @notifications.each do |notification| %>
+      <header>
+        <p>
+        <h4>Event link, click to
+          go: <%= link_to notification.event.description, notification_path(notification.id, redirect_url: event_path(notification.event.id)) %> </h4>
+        </p>
+      </header>
+  <% end %>
+</div>

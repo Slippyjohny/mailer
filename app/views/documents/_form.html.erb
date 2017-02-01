@@ -1,0 +1,10 @@
+<%=simple_form_for([event, event.documents.build]) do |f| %>
+    <div class="form-inputs">
+      <%= f.label  :document_name %>
+      <p>
+        <%= f.text_field :name %>
+    <%= f.file_field :attachment, as: :file %>
+      </p>
+      <%= f.button :submit, "Attach file", class: "new"  %>
+    </div>
+<% end %>
