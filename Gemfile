@@ -19,7 +19,7 @@ gem 'pg_search'
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-gem  'bootstrap-sass'
+gem 'bootstrap-sass'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -30,9 +30,9 @@ gem 'devise'
 gem "simple_form"
 gem "carrierwave"
 ruby "2.3.1"
-gem 'capistrano-bundler'
 gem 'postmark-rails'
 gem 'wisper'
+gem 'thin'
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
@@ -61,7 +61,11 @@ gem 'angularjs-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'capistrano'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
 group :development do
