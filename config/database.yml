@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: dmitro24
+  pool: 25
+
+development:
+  <<: *default
+  database: work
+  pool: 25
+
+test:
+  <<: *default
+  database: work_test
+
+production:
+  <<: *default
+  database: work_production
+  username: clouduser
+  password: MacBook1992
+  pool: 25
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+  secret_key_base: 16a85fb155aadd99168b9a4cf3fa2b047cd7bdf73222afe73280a6fc174a3c2a7ea011898277650bb416fcd3886c72a10ff44b9981ad6f45c3ed373f026b33fa
