@@ -13,6 +13,7 @@ gem 'pg'
 gem 'font-awesome-rails'
 gem 'cancancan'
 gem 'email_validator'
+
 gem 'date_validator'
 gem 'pg_search'
 # Use Puma as the app server
@@ -43,7 +44,7 @@ gem 'slim'
 gem 'telegram-bot-ruby'
 gem 'foreman'
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
