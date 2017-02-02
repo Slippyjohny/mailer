@@ -3,21 +3,20 @@ default: &default
   encoding: unicode
   host: localhost
   username: postgres
-  password: dmitro24
   pool: 25
 
 development:
   <<: *default
-  database: work
+  database: postgres
   pool: 25
 
 test:
   <<: *default
-  database: work_test
+  database: postgres_test
 
 production:
   <<: *default
-  database: work_production
+  database: postgres
   username: postgres
   pool: 25
 
