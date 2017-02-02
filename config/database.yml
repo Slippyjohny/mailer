@@ -2,7 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: localhost
-  username: postgres
+  username: clouduser
+  password: Qwerty14@
   pool: 25
 
 development:
@@ -17,6 +18,7 @@ test:
 production:
   <<: *default
   database: postgres
-  username: postgres
+  username: clouduser
+  password: Qwerty14@
   pool: 25
 
